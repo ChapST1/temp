@@ -1,7 +1,7 @@
+import { ALL_CATEGORIES } from '../../constants'
 import { getBooks } from './getBooks'
 
 export async function getBooksCategories () {
-  const ALL_CATEGORIES = 'Todas'
   const books = await getBooks({ category: ALL_CATEGORIES, pages: 0 })
 
   const booksCategories = books.map(({ bookGenre }) => bookGenre)

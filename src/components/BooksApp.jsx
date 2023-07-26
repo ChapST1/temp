@@ -1,11 +1,12 @@
-import { useBooks } from '../hooks/useBooks'
 import { Toaster } from 'sonner'
+import { useBooks } from '../hooks/useBooks'
 
-import { Footer } from './Footer'
 import { Header } from './Header'
 import { ListOfBooks } from './ListOfBooks'
 import { ListOfReadingList } from './ListOfReadingList'
 import { Loading } from './Loading'
+import { Error } from './Error'
+import { Footer } from './Footer'
 
 export function BooksApp () {
   const { error, loading } = useBooks()
@@ -17,20 +18,20 @@ export function BooksApp () {
 
         <h1 className='text-center text-4xl py-3 text-[#171717]'>Biblioteca</h1>
 
-        {error && <h1>Ha ocurrido un error</h1>}
+        {error && <Error />}
 
         {
         loading
           ? <Loading />
           : (
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-10 pt-2'>
+            <section className='grid grid-cols-1 md:grid-cols-2 gap-10 pt-2'>
               <ListOfBooks />
               <ListOfReadingList />
-            </div>
+            </section>
             )
-      }
-        <Toaster />
 
+        }
+        <Toaster />
       </main>
 
       <Footer />
