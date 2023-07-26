@@ -1,10 +1,14 @@
+/*
+    * Con el hook useZustandBookStore,
+    * se obtienen las propiedades de la estore para una mejor lectura del código
+*/
+
 import { useBookStore } from '../store/booksStore'
 
 export function useZustandBookStore () {
   const books = useBookStore(state => state.books)
   const readingList = useBookStore(state => state.readingList)
   const category = useBookStore(state => state.category)
-  const pages = useBookStore(state => state.pages)
 
   const updateBooks = useBookStore(state => state.updateBooks)
   const updateCategory = useBookStore(state => state.updateCategory)
@@ -16,7 +20,6 @@ export function useZustandBookStore () {
     books,
     readingList,
     category,
-    pages,
 
     updateBooks,
     updateCategory,
