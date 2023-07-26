@@ -1,64 +1,69 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-export const useBookStore = create((set, get) => ({
-  books: [],
-  readingList: [],
-  category: 'Todas',
-  pages: 0,
+export const useBookStore = create(persist(
+  (set, get) => ({
+    books: [],
+    readingList: [],
+    category: 'Todas',
+    pages: 0,
 
-  updateBooks: (newBooks) => {
-    const { readingList } = get()
+    updateBooks: (newBooks) => {
+      const { readingList } = get()
 
-    const readingListIds = readingList.map(book => book.id)
-    const removeCopyInReadingList = [...newBooks].map((book) => {
-      const findBookInReadingList = readingListIds.find(id => id === book.id)
-      if (findBookInReadingList) return undefined
+      const readingListIds = readingList.map(book => book.id)
+      const removeCopyInReadingList = [...newBooks].map((book) => {
+        const findBookInReadingList = readingListIds.find(id => id === book.id)
+        if (findBookInReadingList) return undefined
 
-      return book
-    })
+        return book
+      })
 
-    const filteredNewBooks = Array.from(removeCopyInReadingList).filter((book) => book !== undefined)
-    set({ books: filteredNewBooks })
-  },
+      const filteredNewBooks = Array.from(removeCopyInReadingList).filter((book) => book !== undefined)
+      set({ books: filteredNewBooks })
+    },
 
-  updateCategory: (newCategory) => {
-    const { books } = get()
+    updateCategory: (newCategory) => {
+      const { books } = get()
 
-    const newBooks = [...books].filter(book => book.bookGenre === newCategory)
-    set({ category: newCategory, books: [...newBooks] })
-  },
+      const newBooks = [...books].filter(book => book.bookGenre === newCategory)
+      set({ category: newCategory, books: [...newBooks] })
+    },
 
-  updatePages: (newPages) => {
-    // const { books } = get()
-    // const newBooks = [...books].filter((book) => book.bookPages >= newPages)
+    updatePages: (newPages) => {
+      // const { books } = get()
+      // const newBooks = [...books].filter((book) => book.bookPages >= newPages)
 
-    // set({ pages: newPages, books: [...newBooks] })
+      // set({ pages: newPages, books: [...newBooks] })
 
-    set({ pages: newPages })
-  },
+      set({ pages: newPages })
+    },
 
-  addBookToReadingList: (bookId) => {
-    const { books, readingList } = get()
+    addBookToReadingList: (bookId) => {
+      const { books, readingList } = get()
 
-    const findBookById = books.find(book => book.id === bookId)
-    const newBooks = books.filter(book => book.id !== bookId)
-    const newReadingList = [...readingList, findBookById]
+      const findBookById = books.find(book => book.id === bookId)
+      const newBooks = books.filter(book => book.id !== bookId)
+      const newReadingList = [...readingList, findBookById]
 
-    set({ books: [...newBooks], readingList: [...newReadingList] })
-  },
+      set({ books: [...newBooks], readingList: [...newReadingList] })
+    },
 
-  removeToReadingList: (bookId) => {
-    const { books, readingList, category } = get()
-    const findBookById = readingList.find(book => book.id === bookId)
+    removeToReadingList: (bookId) => {
+      const { books, readingList, category } = get()
+      const findBookById = readingList.find(book => book.id === bookId)
 
-    const newBooks = [...books, findBookById]
-    const newReadingList = readingList.filter(book => book.id !== bookId)
+      const newBooks = [...books, findBookById]
+      const newReadingList = readingList.filter(book => book.id !== bookId)
 
-    const filteredBooks = newBooks.filter(book => book.bookGenre === category)
+      const filteredBooks = newBooks.filter(book => book.bookGenre === category)
 
-    if (category === 'Todas') return set({ books: [...newBooks], readingList: [...newReadingList] })
+      if (category === 'Todas') return set({ books: [...newBooks], readingList: [...newReadingList] })
 
-    set({ books: [...filteredBooks], readingList: [...newReadingList] })
-  }
+      set({ books: [...filteredBooks], readingList: [...newReadingList] })
+    }
 
-}))
+  })
+  , {
+    name: 'books-storage'
+  }))

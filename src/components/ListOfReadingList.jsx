@@ -6,22 +6,20 @@ export function ListOfReadingList () {
   const readingListLength = readingList.length
 
   return (
-    <div className={readingListLength === 0 ? ' hidden' : 'block'}>
-      <p className='text-center text-2xl py-3'>Lista de lectura</p>
-      <div>
-        {
-          readingList.length === 0 && <p className='text-center text-2xl'>No hay libros en la lista de lectura 🥲</p>
-        }
+    <div className='border-4 border-[#f9fafb] rounded-md py-4 px-7'>
+      <p className='text-center text-2xl pb-3 text-[#666]'>Lista de lectura</p>
 
-        <div className='grid grid-cols-4 gap-5 max-w-4xl m-auto'>
-          {
+      {
+        readingListLength === 0 && <p className='text-center text-1xl py-3 text-[#717171]'>No hay libros en la lista de lectura 🥲</p>
+      }
+      <div className='grid grid-cols-4 gap-2 '>
+        {
           readingList.map((book) => {
             return (
               <ReadingListItem key={book.id} book={book} removeToReadingList={removeToReadingList} />
             )
           })
         }
-        </div>
       </div>
     </div>
   )

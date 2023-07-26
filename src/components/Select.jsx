@@ -2,7 +2,7 @@ import { useCategories } from '../hooks/useCategories'
 import { useZustandBookStore } from '../hooks/useZustandBooksStore'
 
 export function Select () {
-  const { updateCategory } = useZustandBookStore()
+  const { updateCategory, category } = useZustandBookStore()
   const { categories } = useCategories()
 
   const handleCategoryChange = (event) => {
@@ -11,7 +11,13 @@ export function Select () {
   }
 
   return (
-    <select name='' id='' className='my-5' onChange={handleCategoryChange}>
+    <select
+      name=''
+      id=''
+      className=' px-2 py-1 rounded-md text-[#fefefe]  outline-none bg-[#171717]'
+      value={category}
+      onChange={handleCategoryChange}
+    >
       {
         categories.map((category, index) => {
           return <option key={index} value={category}>{category}</option>
