@@ -14,17 +14,11 @@
 
 
 
-```npm
-    npm install 
-```
+```npm npm install ```
 
-```npm
-    code .
-```
+```npm code .```
 
-```npm
-    npm run dev
-```
+```npm npm run dev```
 
 * El ```npm install``` -> Es para que se instale todas las dependencias que necesita el proyecto para funcionar.
 * El ```code .``` -> es para abrir el proyecto en Visual Studio Code.
