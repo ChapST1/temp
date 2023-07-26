@@ -14,7 +14,9 @@
 
 
 
-```npm npm install ```
+```npm
+npm install
+```
 
 ```npm code .```
 
