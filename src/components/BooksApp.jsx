@@ -5,13 +5,14 @@ import { Footer } from './Footer'
 import { Header } from './Header'
 import { ListOfBooks } from './ListOfBooks'
 import { ListOfReadingList } from './ListOfReadingList'
+import { Loading } from './Loading'
 
 export function BooksApp () {
   const { error, loading } = useBooks()
 
   return (
     <>
-      <main className='px-5'>
+      <main className='md:px-5'>
         <Header />
 
         <h1 className='text-center text-4xl py-3 text-[#171717]'>Biblioteca</h1>
@@ -20,9 +21,9 @@ export function BooksApp () {
 
         {
         loading
-          ? <h1>Cargando...</h1>
+          ? <Loading />
           : (
-            <div className='grid grid-cols-2 gap-10 pt-2'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-10 pt-2'>
               <ListOfBooks />
               <ListOfReadingList />
             </div>
