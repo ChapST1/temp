@@ -8,7 +8,6 @@ export function useZustandBookStore () {
 
   const updateBooks = useBookStore(state => state.updateBooks)
   const updateCategory = useBookStore(state => state.updateCategory)
-  const updatePages = useBookStore(state => state.updatePages)
 
   const addBookToReadingList = useBookStore(state => state.addBookToReadingList)
   const removeToReadingList = useBookStore(state => state.removeToReadingList)
@@ -21,7 +20,6 @@ export function useZustandBookStore () {
 
     updateBooks,
     updateCategory,
-    updatePages,
 
     addBookToReadingList,
     removeToReadingList
