@@ -1,6 +1,3 @@
-import { ALL_CATEGORIES } from '../../constants'
-import { getBooks } from './getBooks'
-
 /*
     * Creamos la function getBooksCategories
     * Luego obtenemos los libros de la API usando la function getBooks
@@ -9,6 +6,9 @@ import { getBooks } from './getBooks'
     * Luego convertimos el Set en un array con Array.from()
     * Luego retornamos el array con las categorias filtradas
 */
+
+import { ALL_CATEGORIES } from '../../constants'
+import { getBooks } from './getBooks'
 
 export async function getBooksCategories () {
   const books = await getBooks({ category: ALL_CATEGORIES, pages: 0 })
