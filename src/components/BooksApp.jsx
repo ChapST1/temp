@@ -15,11 +15,9 @@ export function BooksApp () {
     <>
       <main className='md:px-5'>
         <Header />
-
         <h1 className='text-center text-4xl py-3 text-[#171717]'>Biblioteca</h1>
 
         {error && <Error />}
-
         {
         loading
           ? <Loading />
